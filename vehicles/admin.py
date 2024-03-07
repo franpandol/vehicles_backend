@@ -3,15 +3,26 @@ from django.contrib import admin
 from vehicles.models import Vehicle, VehicleFeature
 
 
+class VehicleFeatureAdmin(admin.ModelAdmin):
+    list_display = ("title", "description", "show_on_gallery", "featured")
+    list_filter = ("show_on_gallery", "featured")
+    ordering = ("-id",)
+    search_fields = [
+        "title",
+    ]
+
+
 class VehicleAdmin(admin.ModelAdmin):
-    list_display = ("model", "year", "price", "vehicle_type", "published")
+    list_display = ("short_name", "full_name", "vehicle_type", "model", "year", "price", "vehicle_type", "published")
     search_fields = (
         "short_name",
         "full_name",
         "model",
     )
-    list_filter = ("vehicle_type", "model", "year")
+    list_filter = ("vehicle_type", "year")
     ordering = ("-id",)
+    autocomplete_fields = ["features"]
+
     actions = ["publish_vehicle"]
 
     def publish_vehicle(self, request, queryset):
@@ -28,5 +39,4 @@ class VehicleAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Vehicle, VehicleAdmin)
-
-admin.site.register(VehicleFeature)
+admin.site.register(VehicleFeature, VehicleFeatureAdmin)

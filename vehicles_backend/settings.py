@@ -37,11 +37,13 @@ DJANGO_APPS = [
 EXTERNAL_APPS = [
     "rest_framework",
     "django_filters",
+    "django_select2",
 ]
 
 LOCAL_APPS = [
     "api",
     "vehicles",
+    "core",
 ]
 
 
@@ -129,6 +131,8 @@ CACHES = {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     }
 }
+
+SELECT2_CACHE_BACKEND = "default"
 
 # Local settings
 
