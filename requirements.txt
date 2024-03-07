@@ -5,7 +5,9 @@ certifi==2024.2.2
 charset-normalizer==2.1.1
 click==8.1.7
 Django==5.0.3
+django-appconf==1.0.6
 django-filter==23.5
+django-select2==8.1.2
 djangorestframework==3.14.0
 flake8==7.0.0
 idna==3.6
