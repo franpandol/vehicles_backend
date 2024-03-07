@@ -15,7 +15,7 @@ class VehicleListEndpointTest(APITestCase):
         Vehicle.objects.create(model="Model Z", year=2022, vehicle_type=Vehicle.VehicleType.SUVS, price=45000)
 
     def test_filter_by_vehicle_type(self):
-        url = reverse("api:vehicles_list")
+        url = reverse("api:vehicles-list")
         response = self.client.get(url, {"vehicle_type": "CARS"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -24,7 +24,7 @@ class VehicleListEndpointTest(APITestCase):
         self.assertEqual(response.data, serializer.data)
 
     def test_ordering_by_price(self):
-        url = reverse("api:vehicles_list")
+        url = reverse("api:vehicles-list")
         response = self.client.get(url, {"ordering": "price"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -33,7 +33,7 @@ class VehicleListEndpointTest(APITestCase):
         self.assertEqual(response.data, serializer.data)
 
     def test_ordering_by_year(self):
-        url = reverse("api:vehicles_list")
+        url = reverse("api:vehicles-list")
         response = self.client.get(url, {"ordering": "-year"})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
