@@ -10,12 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
+from os.path import dirname, join
 from pathlib import Path
 
-import os
-from os.path import join, dirname
 from dotenv import load_dotenv
-
 
 dotenv_path = join(dirname(__file__), ".env.dev")
 load_dotenv(dotenv_path, verbose=True)
@@ -123,6 +122,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "../media")
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+    }
+}
 
 # Local settings
 
