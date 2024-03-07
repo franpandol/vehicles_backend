@@ -1,18 +1,18 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, generics
+from rest_framework import filters, viewsets
 
 from api.serializers import VehicleSerializer
 from vehicles.models import Vehicle
 
 
-class VehicleListEndpoint(generics.ListAPIView):
+class VehicleViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Return a list of all **published** vehicles ordered by `order_weight`.
     The `order_weight` is used to determine the order of the vehicles in the list.
     The `order_weight` is set in the `Vehicle` model.
 
-
     The list can be filtered by `vehicle_type` and ordered by `price` and `year`.
+
     """
 
     queryset = Vehicle.published_objects.all()
